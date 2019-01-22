@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\React_Native\\camera edit\\android\\.build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
+            "outputFile": "E:\\React_Native\\Zombie\\React-Native-Camera\\android\\.build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Nipunika Liyanagama\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\958ca0c905dbb21df77ef8af7646d67d\\res\\values-vi\\values-vi.xml",

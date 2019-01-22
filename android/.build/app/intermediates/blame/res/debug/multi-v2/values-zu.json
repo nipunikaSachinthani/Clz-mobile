@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\React_Native\\camera edit\\android\\.build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zu\\values-zu.xml",
+            "outputFile": "E:\\React_Native\\Zombie\\React-Native-Camera\\android\\.build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zu\\values-zu.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Nipunika Liyanagama\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-12.0.1.aar\\38c187e90e449b308e050676b0cb2588\\res\\values-zu\\values.xml",

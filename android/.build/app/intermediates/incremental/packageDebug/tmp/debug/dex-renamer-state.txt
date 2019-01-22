@@ -1,4 +1,4 @@
-#Tue Jan 22 11:54:51 IST 2019
-base.0=E\:\\React_Native\\camera edit\\android\\.build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+#Tue Dec 11 14:25:41 IST 2018
+base.0=E\:\\React_Native\\Zombie\\React-Native-Camera\\android\\.build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

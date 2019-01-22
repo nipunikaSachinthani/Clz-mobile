@@ -10,7 +10,7 @@
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
     "react-native-camera": "^1.4.3",
-    "react-native-qrcode-scanner": "^1.1.0"
+    "react-native-qrcode-scanner": "^1.1.2"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

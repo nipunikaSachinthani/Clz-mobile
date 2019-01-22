@@ -1,102 +1,133 @@
 import React, { Component } from 'react';
+
 import {
-AppRegistry,
-StyleSheet,
-Text,
-View,
-Linking,
-Vibration,
-Dimensions
+  AppRegistry,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Linking,
+  Alert,
+  View,
+  Button,
+  RefreshControl,
 } from 'react-native';
 
-import Camera from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+
 export default class App extends Component {
 
-_handleBarCodeRead(e) {
-    Vibration.vibrate();
-    this.setState({scanning: false});    
-    Linking.openURL(e.data).catch(err => console.error('An error occured', err));
-    return;
-}  
-getInitialState() {
-        return {
-            scanning: true,
-            cameraType: Camera.constants.Type.back
-        }
-}   
-render() {
-    if(this.state.scanning) {
+    constructor(props){
+     super(props)
+     this.state = {
+         dataqr:'',
+         status:'Ready'
+     };
+    }
+  onSuccess(e) {
+      this.setState({
+          dataqr:this.state.dataqr+', '+e.data,
+          status:this.setState({status:'Ready'})
+      })
+
+   /* Linking
+      .openURL(e.data)
+      .catch(err => console.error('An error occured', err));*/
+      Alert.alert(
+          'QR Code', 
+          'code : '+e.data,
+          [
+             {text: 'OK' , onPress: () => console.log('OK Pressed')}, 
+          ],
+          { cancelable : false}
+
+      )
+  }
+  _onRefresh(){
+      this.setState({refreshing:true});
+  }
+
+  render() {
     return (
-    <View style={styles.container}>
-        <Text style={styles.welcome}>
-        Barcode Scanner
-        </Text>
-        <View style={styles.rectangleContainer}>
-        <Camera style={styles.camera} type={this.state.cameraType} onBarCodeRead={this._handleBarCodeRead.bind(this)}>
-            <View style={styles.rectangleContainer}>
-            <View style={styles.rectangle}/>
-            </View>            
-        </Camera>
-        </View>
-        <Text style={styles.instructions}>
-        Double tap R on your keyboard to reload,{'\n'}
-        </Text>
-    </View>
+        <View style = {styles.conMain}>
+       <View style = {styles.conHeader}>
+          <Text style = {styles.textHeader}>Clz mate QR Code scanner</Text>
+       </View>
+       <View style = {styles.conQR}>
+        <QRCodeScanner
+         onRead={this.onSuccess.bind(this)}
+         ref = {(node) => {this.scanner = node}}
+        
+        topContent={
+            <View>
+
+          <Text style={styles.centerText}>
+             <Text style={styles.textBold}></Text> 
+          </Text>
+         
+        
+          </View>  
+        }
+        bottomContent={
+          <View>
+              <Text>code {this.state.dataqr}</Text>
+          </View>
+        }
+      />
+      </View>
+      <View style = {styles.button}>
+          <Button
+            onPress = {()=> {
+                this.scanner.reactivate()
+                this.setState({status:'Ready'})
+            }
+        }
+          
+            title = {this.state.status}
+            />
+            </View>
+            <View>
+                <Button style = {styles.button1} 
+                <RefreshControl
+                refreshing = {this.state.refreshing}
+                onRefresh = {this._onRefresh.bind(this)}
+                />
+                />
+            </View>
+         </View>
+      
     );
-    }
-    else{
-    return (<View  style={styles.container}>
-        <Text style={styles.welcome}>
-        Barcode Scanner
-        </Text>      
-        <Text style={styles.instructions}>
-        Double tap R on your keyboard to reload,{'\n'}
-        </Text>     
-    </View>);
-    }
-}
+  }
 }
 
 const styles = StyleSheet.create({
-container: {
+  conMain: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-},
-camera: {
-    flex: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    height: Dimensions.get('window').width,
-    width: Dimensions.get('window').width,
-},  
-welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-},
-instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-},
-rectangleContainer: {
+   
+  },
+ conHeader: {
     flex: 1,
+    backgroundColor:'rgb(0,0,0)',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-},
+    justifyContent: 'center'
+  },
+  textHeader: {
+    fontSize: 18,
+    color: 'rgb(255,255,255)',
+    
+  },
+ conQR: {
+     flex: 8,
+    padding: 5,
+  },
+  centerText:{
+      fontSize: 12,
+      color: '#777',
+  },
+  button:{
+      padding:20,
 
-rectangle: {
-    height: 250,
-    width: 250,
-    borderWidth: 2,
-    borderColor: '#00FF00',
-    backgroundColor: 'transparent',
-},  
+
+  },
 });
 
-AppRegistry.registerComponent('ReactBarcodeScannerProject', () => ReactBarcodeScannerProject);   
+AppRegistry.registerComponent('default', () => ScanScreen);
